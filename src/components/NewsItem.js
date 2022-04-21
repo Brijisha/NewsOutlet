@@ -4,7 +4,7 @@ export class NewsItem extends Component {
   render() {
     const { title, description, imageUrl, newsUrl } = this.props;
     return (
-      <div className="my-3">
+      <div className="container-md my-3">
         <div className="card" style={{ width: "18rem" }}>
           <img
             src={
@@ -20,6 +20,7 @@ export class NewsItem extends Component {
             <p className="card-text">{description}...</p>
             <a
               href={newsUrl}
+              rel="noreferrer"
               target="_blank"
               className="btn btn-sm btn-primary"
             >
