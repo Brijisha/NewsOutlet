@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "brijishadoshi"
+  },
+  "targets": {
+    "brijishadoshi": {
+      "hosting": {
+        "newsoutlet": [
+          "newsoutlet"
+        ]
+      }
+    }
+  }
+}
