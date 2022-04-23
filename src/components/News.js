@@ -9,25 +9,32 @@ export class News extends Component {
     country: "in",
     pageSize: 6,
     category: "general",
+    title: "NewsOutlet - Get your daily dose of news for free",
   };
 
   static propTypes = {
     country: PropTypes.string,
     pageSize: PropTypes.number,
     category: PropTypes.string,
+    title: PropTypes.string,
   };
-  constructor() {
-    super();
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  constructor(props) {
+    super(props);
     console.log("Constructor from news components");
     this.state = {
       articles: [],
       loading: true,
       page: 1,
     };
+    document.title = `${this.props.title} - $NewsOutlet`;
   }
-  async componentDidMount() {
+
+  async updateNews() {
     //Lifecycle method which brings all data from api url, runs after render()
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa25a2acac74496a88e5c51ad567502a&page=1&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa25a2acac74496a88e5c51ad567502a&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url); //Method to call APIand it will  send request to given url and wait for response
     let parseData = await data.json(); // convert stribg to json object
@@ -39,50 +46,30 @@ export class News extends Component {
     });
   }
 
-  handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=aa25a2acac74496a88e5c51ad567502a&page=${
-      this.state.page - 1
-    }&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
-    let data = await fetch(url); // send request to given url and wait for response
-    let parseData = await data.json(); // convert stribg to json object
-    console.log(parseData);
+  async componentDidMount() {
+    //Lifecycle method which brings all data from api url, runs after render()
+    this.updateNews();
+  }
 
+  handlePrevClick = async () => {
     this.setState({
       page: this.state.page - 1,
-      articles: parseData.articles,
-      loading: false,
     });
+    this.updateNews();
   };
   handleNextClick = async () => {
-    console.log("Next");
-
-    let url = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=aa25a2acac74496a88e5c51ad567502a&page=${
-      this.state.page + 1
-    }&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
-    let data = await fetch(url); // send request to given url and wait for response
-    let parseData = await data.json(); // convert stribg to json object
-
     this.setState({
       page: this.state.page + 1,
-      articles: parseData.articles,
-      loading: false,
     });
+    this.updateNews();
   };
   render() {
     return (
       <div className="container">
         <h1 className="text-center text-dark my-5">
-          NewsOutlet -Top Headlines
+          {`NewsOutlet - Top ${this.capitalizeFirstLetter(
+            this.props.category
+          )} Headlines`}
         </h1>
         {this.state.loading && <Spinner />}
         <div className="row">
@@ -95,6 +82,9 @@ export class News extends Component {
                     description={element.description?.slice(0, 80)}
                     imageUrl={element.urlToImage}
                     newsUrl={element.url}
+                    author={element.author}
+                    date={element.publishedAt}
+                    source={element.source.name}
                   />
                 </div>
               );

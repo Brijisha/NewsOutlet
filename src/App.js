@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import News from "./components/News";
 
 export default class App extends Component {
+  pageSize = 12;
   render() {
     //render() is lifecycle method. It compiles jsx in html and run it. Render html on screen
     return (
@@ -19,9 +20,10 @@ export default class App extends Component {
               element={
                 <News
                   key="general"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"general"}
+                  title={"General News"}
                 />
               }
             />
@@ -31,9 +33,10 @@ export default class App extends Component {
               element={
                 <News
                   key="business"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"business"}
+                  title={"Business News"}
                 />
               }
             />
@@ -43,9 +46,10 @@ export default class App extends Component {
               element={
                 <News
                   key="entertainment"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"entertainment"}
+                  title={"Entertainment News"}
                 />
               }
             />
@@ -55,9 +59,10 @@ export default class App extends Component {
               element={
                 <News
                   key="health"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"health"}
+                  title={"Health News"}
                 />
               }
             />
@@ -67,9 +72,10 @@ export default class App extends Component {
               element={
                 <News
                   key="science"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"science"}
+                  title={"Science News"}
                 />
               }
             />
@@ -79,9 +85,10 @@ export default class App extends Component {
               element={
                 <News
                   key="sports"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"sports"}
+                  title={"Sports News"}
                 />
               }
             />
@@ -91,9 +98,10 @@ export default class App extends Component {
               element={
                 <News
                   key="technology"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"technology"}
+                  title={"Technology News"}
                 />
               }
             />
@@ -103,7 +111,7 @@ export default class App extends Component {
               element={
                 <News
                   key="general"
-                  pageSize={6}
+                  pageSize={this.pageSize}
                   country={"in"}
                   category={"general"}
                 />

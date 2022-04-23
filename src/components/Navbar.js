@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import newsoutletlogo from "./newsoutletlogo.png";
 //  import PropTypes from "prop-types";
 
 export class Navbar extends Component {
@@ -11,7 +12,11 @@ export class Navbar extends Component {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              NewsOutlet
+              <img
+                src={newsoutletlogo}
+                alt="newsoutletlogo"
+                style={{ height: "70px" }}
+              />
             </Link>
             <button
               className="navbar-toggler"
