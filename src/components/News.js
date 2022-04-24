@@ -37,7 +37,7 @@ export class News extends Component {
   async updateNews() {
     this.props.setProgress(0);
     //Lifecycle method which brings all data from api url, runs after render()
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa25a2acac74496a88e5c51ad567502a&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url); //Method to call APIand it will  send request to given url and wait for response
     this.props.setProgress(40);
@@ -72,7 +72,7 @@ export class News extends Component {
 
   fetchMoreData = async () => {
     this.setState({ page: this.state.page + 1 });
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa25a2acac74496a88e5c51ad567502a&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     // this.setState({ loading: true });
     let data = await fetch(url); //Method to call APIand it will  send request to given url and wait for response
     let parseData = await data.json(); // convert stribg to json object
