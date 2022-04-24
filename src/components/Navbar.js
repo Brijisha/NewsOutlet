@@ -1,10 +1,11 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import newsoutletlogo from "./newsoutletlogo.png";
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <img
